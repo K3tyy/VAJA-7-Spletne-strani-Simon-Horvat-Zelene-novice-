@@ -1,0 +1,17 @@
+git clone https://github.com/K3tyy/VAJA-7-Spletne-strani-Simon-Horvat-Zelene-novice-.git
+
+cd VAJA-7-Spletne-strani-Simon-Horvat-Zelene-novice-
+
+git pull
+
+
+
+
+
+
+
+git add .
+
+git commit -m "urejeno: dodal sem *tisto in tisto* "
+
+git push
