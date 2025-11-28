@@ -1,5 +1,11 @@
 <?php ob_start() ?>
 
+<?php if (!empty($error)): ?>
+<div class="alert alert-danger text-center">
+    <?= htmlspecialchars($error) ?>
+</div>
+<?php endif; ?>
+
 <div class="container mt-5">
     <div class="page-header mb-4">
         <h1>Dodaj novico</h1>
