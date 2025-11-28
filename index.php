@@ -20,7 +20,7 @@ switch ($stran) {
 
         if (insertNovica($naslov, $podnaslov, $vsebina)) {
             // uspešno zapisano → preusmeritev
-            header("Location: index.php?stran=admin");
+            header("Location: /project/index.php?stran=admin");
             exit;
         } else {
             $error = "Napaka: izpolni vsa obvezna polja!";

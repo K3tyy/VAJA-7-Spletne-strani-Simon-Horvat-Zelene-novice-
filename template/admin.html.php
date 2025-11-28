@@ -11,7 +11,7 @@
 <ul class="list-group">
     <li class="list-group-item active">Novice</li>
     <li class="list-group-item">
-        <a href="index.php?stran=admin&podstran=dodajNovica" class="text-decoration-none">Dodaj novico</a>
+        <a href="/project/index.php?stran=admin&podstran=dodajNovica" class="text-decoration-none">Dodaj novico</a>
     </li>
     <li class="list-group-item">Uredi / izbriši</li>
 </ul>
