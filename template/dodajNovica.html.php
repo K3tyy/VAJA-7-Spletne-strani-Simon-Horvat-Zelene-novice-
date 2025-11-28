@@ -11,7 +11,7 @@
         <h1>Dodaj novico</h1>
     </div>
 
-    <form method="post" action="#">
+    <form method="post" action="index.php?stran=admin&podstran=dodajNovica">
         <div class="mb-3">
             <label for="naslov" class="form-label">Naslov</label>
             <input type="text" class="form-control" id="naslov" name="naslov" placeholder="Vnesi naslov novice" required>

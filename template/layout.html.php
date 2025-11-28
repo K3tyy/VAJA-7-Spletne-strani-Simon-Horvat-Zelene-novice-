@@ -50,7 +50,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="mainNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="index.php?stran=admin">
                             <i class="bi bi-house-door"></i> Domov
                         </a>
                     </li>
