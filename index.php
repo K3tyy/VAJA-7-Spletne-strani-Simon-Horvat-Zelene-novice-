@@ -1,35 +1,31 @@
 <?php
-// privzeta stran
-$stran = $_GET['stran'] ?? 'index';
+require "db.php"; // MORA BITI NA VRHU !!!
+
+$stran    = $_GET['stran']    ?? 'index';
 $podstran = $_GET['podstran'] ?? '';
 
 switch ($stran) {
+
     case 'admin':
         $title = "Administrator";
 
-        // preverimo podstran
         switch ($podstran) {
+
             case 'dodajNovica':
-    require "db.php";
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $naslov    = $_POST['naslov']    ?? '';
+                    $podnaslov = $_POST['podnaslov'] ?? '';
+                    $vsebina   = $_POST['vsebina']   ?? '';
 
-        $naslov = $_POST['naslov'] ?? '';
-        $podnaslov = $_POST['podnaslov'] ?? '';
-        $vsebina = $_POST['vsebina'] ?? '';
-
-        if (insertNovica($naslov, $podnaslov, $vsebina)) {
-            // uspešno zapisano → preusmeritev
-            header("Location: /project/index.php?stran=admin");
-            exit;
-        } else {
-            $error = "Napaka: izpolni vsa obvezna polja!";
-        }
-    }
-
-    include "template/dodajNovica.html.php";
-    break;
-
+                    if (insertNovica($naslov, $podnaslov, $vsebina)) {
+                        $success = "Novica je bila uspešno dodana.";
+                    } else {
+                        $error = "Prišlo je do napake. Novica ni bila dodana.";
+                    }
+                }
+                include "template/dodajNovica.html.php";
+                break;
 
             default:
                 include "template/admin.html.php";
@@ -43,7 +39,4 @@ switch ($stran) {
         break;
 }
 
-// vključimo glavni layout
 include "template/layout.html.php";
-?>
-    
