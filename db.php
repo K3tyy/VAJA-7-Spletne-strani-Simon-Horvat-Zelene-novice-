@@ -17,24 +17,41 @@ if (!$conn) {
 function insertNovica($naslov, $podnaslov, $vsebina) {
     global $conn;
 
-    // preverimo prazna polja
     if (empty($naslov) || empty($vsebina)) {
         return false;
     }
 
-    // datum in čas
+    $slug = createSlug($naslov);
     $ustvarjeno = date("Y-m-d H:i:s");
 
-    // priprava SQL
     $stmt = mysqli_prepare(
         $conn,
-        "INSERT INTO novica (naslov, podnaslov, vsebina, ustvarjeno, posodobljeno)
-         VALUES (?, ?, ?, ?, NULL)"
+        "INSERT INTO novica (naslov, slug, podnaslov, vsebina, ustvarjeno, posodobljeno)
+         VALUES (?, ?, ?, ?, ?, NULL)"
     );
 
-    mysqli_stmt_bind_param($stmt, "ssss", $naslov, $podnaslov, $vsebina, $ustvarjeno);
-    $rezultat = mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_param($stmt, "sssss", $naslov, $slug, $podnaslov, $vsebina, $ustvarjeno);
 
-    return $rezultat;
+    return mysqli_stmt_execute($stmt);
+}
+
+function createSlug($text) {
+    // 1. pretvorimo v male črke
+    $text = strtolower($text);
+
+    // 2. šumnike pretvorimo
+    $text = str_replace(
+        ['č', 'š', 'ž', 'ć', 'đ'],
+        ['c', 's', 'z', 'c', 'd'],
+        $text
+    );
+
+    // 3. vse, kar ni črka ali številka, zamenjamo z -
+    $text = preg_replace('/[^a-z0-9]+/', '-', $text);
+
+    // 4. odstranimo - na začetku ali koncu
+    $text = trim($text, '-');
+
+    return $text;
 }
 
